@@ -6,16 +6,16 @@
             <div class="product__food-box">
                 <p class="product__food-box-off"><s>{{ p.primePrice }}</s></p>
                 <input class="product__food-price" type="text" :value="p.price" readonly>
-                <img class="card__box__price-pic" src="..\assets\tooman.svg" alt="price-pic">
+                <img class="card__box__price-pic" src="@/assets/tooman.svg" alt="price-pic">
             </div>                                
         </div>        
         <div class="product__count">
             <div class="product__count__calc">
-                <button class="plus-sign" @click="decNumber"><img src="..\assets\add.svg" alt="add-sign"></button>                                 
+                <button class="plus-sign" @click="decNumber"><img src="@/assets/negative.svg" alt="negativeSign"></button>                                 
                 <div class="product__count__calc-num">{{ counter }}</div>
-                <button class="minus-sign" @click="incNumber"><img src="..\assets\negative.svg" alt="minus-sign"></button>                           
+                <button class="minus-sign" @click="incNumber"><img src="@/assets/add.svg" alt="addSign"></button>                           
             </div>                        
-            <button><img @click="deleteItem" class="product__count__del" src="..\assets\delete.svg" alt="delete-sign"></button>                        
+            <button><img @click="deleteItem" class="product__count__del" src="@/assets/delete.svg" alt="delete-sign"></button>                        
             <div class="product__count__cap">
                 <button class="product__count__cap-p">ذخیره در لیست خرید بعدی</button>                   
             </div>
@@ -28,31 +28,33 @@ export default {
     data() {
         return {
             counter: 1,
-            sum: 0, 
-            isDelete: '',
-            isFullDelete: '',                      
+            productSum: 0, 
+            isDelete: false,
+            isFullDelete: false,                      
         }
     }, 
     methods: {
         incNumber() {
             this.counter++;
-            this.sum = this.counter * this.p.price;
-            this.$emit('calcSum', this.sum);           
+            this.productSum = this.counter * this.p.price;
+            this.$emit('calcSum', this.productSum);           
         },
         decNumber() {
             if (this.counter > 1) {
                 this.counter--;
-                this.sum = this.counter * this.p.price;
-                this.$emit('calcSum', this.sum);
+                this.productSum = this.counter * this.p.price;
+                this.$emit('calcSum', this.productSum);
             } else this.counter = 1;
         }, 
         deleteItem() {
-            this.isDelete = true;            
-            this.product.pop();           
-
-            if (this.product.length < 1) {
-                this.isFullDelete = true;                
-            }           
+            this.isDelete = true;
+            if (this.v.id === 0) {
+                this.v.quantity--; 
+                if (this.v.quantity < 1) {
+                    this.isFullDelete = true;                
+                }
+            } else this.isFullDelete = true;              
+                   
             this.$emit('onDelete', {
                 isDelete: this.isDelete,
                 isFullDelete: this.isFullDelete
@@ -62,7 +64,7 @@ export default {
             });           
         }                   
     }, 
-    props: ['p', 'product'],   
+    props: ['p', 'product', 'v'],   
 }
 </script>
 <style scoped>

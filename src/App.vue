@@ -1,37 +1,12 @@
 <template>
-  <div id="app">
-    {{ getData() }}    
-    <Header :vendors="vendor"/>
-    <LetterHead />
-    <Vendor v-for="(v, index) in vendor" :key="index" :v="v" :vendors="vendor"/>    
-    <Footer :vendors="vendor"/>
+  <div id="app"> 
+    <router-view name="header" />
+    <router-view />
   </div>
 </template>
-
 <script>
-import Header from './components/Header';
-import Vendor from './components/Vendor';
-import Footer from './components/Footer';
-import LetterHead from './components/LetterHead';
 export default {
-  name: 'App',
-  data() {
-    return {        
-      vendor: [],             
-    }
-  },
-  components: {
-    Header,
-    Vendor,
-    Footer,
-    LetterHead
-  },
-  methods: {
-      getData() {
-      const fakeData = require('../data/FakeData.json');     
-      this.vendor = fakeData.vendors;                 
-    }
-  },   
+  name: 'App',     
 }
 </script>
 <style>
@@ -77,7 +52,7 @@ export default {
         font-size: 12px;
         font-weight: 400; }
       .btn-red-big {
-        padding: 15px 20px; }
+        padding: 11px 18px; }
         .btn-red-big-link {
           font-size: 14px;
           font-weight: 700; }

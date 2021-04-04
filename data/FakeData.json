@@ -1,29 +1,4 @@
-{
-    "products": 
-    [
-        {
-            "id" : 1,
-            "productName": "سوسیس آلمانی پنیری",            
-            "price": 750000,
-            "primePrice": 850000,            
-            "productPic": "~pic/meal-1"
-        },
-        {
-            "id" : 2,
-            "productName": "سوسیس پنیری",            
-            "price": 300000,
-            "primePrice": 350000,            
-            "productPic": "~pic/meal-1"
-        }, 
-        {
-            "id" : 3,
-            "productName": "سوسیس آلمانی پنیری",            
-            "price": 750000,
-            "primePrice": 850000,            
-            "productPic": "~pic/meal-1"
-        }
-    ],
-
+{   
     "vendors": 
     [
         {
@@ -33,6 +8,7 @@
             "shopName": "خوشمزه های خاتون",
             "userPhoto": "https://s16.picofile.com/file/8429016326/user_1.jpeg",
             "offShow": true,
+            "quantity": 2,
             "product": [
                 {    
                     "id": 0,          
@@ -57,6 +33,7 @@
             "shopName": "محصولات غذایی ولیک",
             "userPhoto": "https://s16.picofile.com/file/8429016350/user_2.jpg",
             "offShow": false,
+            "quantity": 1,
             "product": [
                 {     
                     "id": 0,               
@@ -66,6 +43,41 @@
                     "productPic": "https://s17.picofile.com/file/8429016092/meal_1.jpg"
                 }
             ]    
+        }
+    ],
+    "address":
+    [
+        {
+            "name": "مهدی خدادادی",
+            "fullPath": "قم، پردیسان، خیابان دانشگاه، بعد از میدان علوم، رو به روی پایانه، ساختمان شرکت توسعه و تدبیر جوامع سلام"
+        },
+        {
+            "name": "محمدحسن احمدی",
+            "fullPath": "قم، خیابان آذر، میدان زاویه، کوی هشت، پلاک چهل و نه"
+        }
+    ],
+    "products": 
+    [
+        {
+            "id": 0,               
+            "productName": "سوسیس آلمانی پنیری",            
+            "price": 75000,
+            "primePrice": 85000,            
+            "productPic": "https://s17.picofile.com/file/8429016092/meal_1.jpg" 
+        },
+        {
+            "id": 1,               
+            "productName": "کالباس پنیری",            
+            "price": 30000,
+            "primePrice": 35000,            
+            "productPic": "https://s16.picofile.com/file/8429016192/meal_2.png"
+        },
+        {
+            "id": 2,               
+            "productName": "سوسیس آلمانی پنیری",            
+            "price": 75000,
+            "primePrice": 85000,            
+            "productPic": "https://s17.picofile.com/file/8429016092/meal_1.jpg"
         }
     ]    
 }

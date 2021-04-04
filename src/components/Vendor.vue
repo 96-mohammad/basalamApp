@@ -1,5 +1,5 @@
 <template>       
-    <section v-if="!isFullDelete" class="card">
+    <section v-if="!isFullDelete" class="card">      
       <div class="card__header">                            
         <p class="card__header-p">از غرفه:<b>{{ v.shopName }}</b></p>
       </div>
@@ -9,15 +9,18 @@
             <div class="body__user__exp">
                 <figcaption class="body__user__exp-cap">{{ v.owner }}</figcaption>
                 <div class="body__user__loc">
-                    <img class="body__user__loc-icon" src="..\assets\location.svg" alt="location svg">
+                    <img class="body__user__loc-icon" src="@/assets/location.svg" alt="location svg">
                     <p class="body__user__loc-p">از {{ v.destination }}</p>
                 </div>                            
             </div>
           </figure>                               
       </div> 
-      <Product v-for="p in this.vendors[0].product" :key="p.id" :p="p" :product="product"
-                @calcSum="updateData($event, p.id)" @onDelete="changeState($event, p.id)"
-            />       
+      <Product :p="product[0]" :v="v" :product="product" @calcSum="updateData($event, product[0].id)" 
+      @onDelete="changeState($event, product[0].id)"
+      />
+      <Product v-if="showProduct" :p="product[1]" :v="v" :product="product" @calcSum="updateData($event, product[1].id)"
+       @onDelete="changeState($event, product[1].id)"
+       /> 
       <div class="card__footer">
           <p v-if="v.offShow" class="card__footer-p">هورا! ارسال از این غرفه برای شما <span class="span-green">رایگان شد.</span></p>
           <p v-else class="card__footer-p card__footer-p-edit">برای ارسال رایگان: <span class="span-black">۴۵۰۰۰ تومان دیگه از این غرفه خرید کنید.</span></p>                        
@@ -27,7 +30,7 @@
                 <p class="card__box__price-p">جمع مبلغ برای<span class="price-number"> {{ length }} </span>کالا</p>
                 <div class="card__box__price-box">                  
                     <p class="card__box__price-num">{{ sum }}</p> 
-                    <img class="card__box__price-pic" src="..\assets\tooman.svg" alt="price pic">
+                    <img class="card__box__price-pic" src="@/assets/tooman.svg" alt="price pic">
                 </div>                                
               </div>
           </div>         
@@ -40,33 +43,41 @@ import Product from './Product';
 export default {
   name: 'Vendor',
   data() {
-    return { 
-      product: [...this.vendors[0].product],    
+    return {  
       price: [0,0],
       sum: 0,
+      length: 0,
       isDelete: false,
-      isFullDelete: false,
-      length: 0 
+      isFullDelete: false,      
+      showProduct: false
     }
   },
   components: {
     Product
   },
-  props: ['vendors', 'v'],
-  methods: {     
+  props: ['v', 'product', 'vendors'],  
+  methods: {  
+    //Updating Sum Prices   
     updateData(sum, id) {        
       this.price[id] = sum;       
-      this.sumData();   
+      this.sumData();    
 
       this.$root.$emit('sumData', {
         sum: this.sum,
         id: this.v.id
       });   
-    },    
+    }, 
+    //Show Other Product  
+    changeShow() {
+      if (this.v.quantity > 1) {
+        this.showProduct = true;
+      }
+    }, 
+    //Delete Function 
     changeState(state, id) {
       this.isDelete = state.isDelete;
-      this.isFullDelete = state.isFullDelete;
-      this.length = this.product.length;
+      this.isFullDelete = state.isFullDelete;      
+      this.length--;
 
       if (this.isDelete) {
         this.price[id] = 0;
@@ -79,16 +90,30 @@ export default {
         state: this.isFullDelete
       });
     },
+    //Sum Prices
     sumData() {
-      this.sum = this.price[0] + this.price[1];      
-    },                   
+      if (this.v.id === 0) {
+        this.sum = this.price[0] + this.price[1]
+      } else this.sum = this.price[0]            
+    },  
+    //Insert Default Data in Page 
+    insertDefaultData() {
+      if (this.v.id === 0) {
+        this.sum = this.product[0].price + this.product[1].price;
+        this.length = this.v.quantity;
+      } else {
+        this.sum = this.product[2].price;
+        this.length = this.v.quantity;
+      }
+    }                
   },   
   created() {
-    this.sum = this.product[0].price + this.product[1].price;
+    this.insertDefaultData();
+    this.changeShow();
     this.price[0] = this.product[0].price;
-    this.price[1] = this.product[1].price;
-    this.length = this.product.length;
-  },  
+    this.price[1] = this.product[1].price;     
+  }
+  //v-for="p in this.vendors[0].product" :key="p.id" :p="p" :product="product" 
 }
 </script>
 <style scoped>
