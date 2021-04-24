@@ -135,7 +135,7 @@ export default {
       //این شرط به این دلیل گذاشته شده است که مشابهت بسیار زیادی بین آیدی این محصول و محصول دیگری وجود دارد
       if (title === "کیک کاکائویی خشمزه") 
         this.id = 2
-      else this.id = cartID.slice(3, 7)
+      else this.id = cartID.slice(2, 6)
     },
     //*** Speed Up in Hold Mouse ***//
     incSpeedUp() {  
