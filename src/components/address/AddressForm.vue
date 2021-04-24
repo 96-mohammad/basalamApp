@@ -1,24 +1,23 @@
 <template>
     <div class="address__form">
         <div class="form__header">
-            <h2 class="form__header-heading">به: {{ a.name }}</h2>
+            <h2 class="form__header-heading">به: باسلام</h2>
             <img class="form__header-img" src="@/assets/penIcon.svg" alt="penIcon">
         </div>
         <label class="form__select">
-            <p class="form__lable">{{ a.fullPath }}</p>
-            <input type="radio" name="radio">
+            <p class="form__lable">قم، پردیسان، خیابان دانشگاه، بعد از میدان علوم، رو به روی پایانه، ساختمان شرکت توسعه و تدبیر جوامع سلام</p>
+            <input type="radio" name="radio" checked>
             <span class="checkmark"></span>
-        </label>                                       
+        </label>                                             
     </div>
 </template>
 
 <script>
 export default {
   name: 'AddressForm',
-  props: ['a']
+  
 }
 </script>
-
 <style scoped>
 .address__form {
   padding: 10px 0;
@@ -50,23 +49,21 @@ export default {
   font-size: 13px;
   font-weight: 400;
   color: #535353;
-  margin: -16px 30px 0 0; } 
+  margin: -16px 30px 0 0;
+  width: 81%; } 
 .form__select input {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0; }
+  cursor: pointer; }
 .checkmark {
   position: absolute;
   top: 4px;
   right: 11px;
   height: 22px;
   width: 22px;
-  background-color: #eee;
+  background-color: #fff;
+  border: 1px solid #9d9d9d;
   border-radius: 50%; }
-.form__select:hover input ~ .checkmark {
-  background-color: #ccc; }
 .form__select input:checked ~ .checkmark {
   background-color: #D73856; }
 .checkmark:after {
@@ -76,10 +73,10 @@ export default {
 .form__select input:checked ~ .checkmark:after {
   display: block; }
 .form__select .checkmark:after {
-  top: 7px;
-  left: 7px;
-  width: 8px;
-  height: 8px;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: white; }
 </style>

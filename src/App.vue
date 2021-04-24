@@ -5,8 +5,13 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
-  name: 'App',     
+  name: 'App',  
+  methods: mapActions(["fetchData"]),
+  async mounted() {
+    this.fetchData()
+  }   
 }
 </script>
 <style>
@@ -18,7 +23,8 @@ export default {
       padding: 0; }
     *:focus { outline: none; }
     html {
-      box-sizing: border-box; }
+      box-sizing: border-box;
+      scroll-behavior: smooth }
     body {
       background-color: #e5e5e5; }
     a {
@@ -31,17 +37,12 @@ export default {
       background-color: #fff; }
     #app {
       margin: 0 auto;
-      width: 350px; }  
+      max-width: 350px; }  
     .heading-one {
       font-size: 24px;
       font-weight: 400;
       color: #535353;
-      margin-right: 5px; }
-    .heading-two {
-      color: #535353;
-      font-size: 12px;
-      font-weight: 400;
-      padding: 10px; }   
+      margin-right: 5px; }      
     .btn-red {
       display: inline-block;
       padding: 10px 25px;

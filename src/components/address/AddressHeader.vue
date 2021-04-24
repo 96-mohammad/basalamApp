@@ -18,7 +18,6 @@ export default {
   name: 'AddressHeader',
 }
 </script>
-
 <style scoped>
 .address__header {
     background-color: #fff;
